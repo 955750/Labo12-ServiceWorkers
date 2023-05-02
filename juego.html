@@ -11,14 +11,16 @@
         <canvas id="lienzo" width="600" height="300"></canvas>
         <script>
             if ('serviceWorker' in navigator) { // Preguntamos si el navegador soporta el SW
-                navigator.serviceWorker.register('./service-worker.js').then(function (registration) {
-                    console.log('ServiceWorker registration succesful with scope: ', registration.scope);
-                }).catch(function (err) {
-                    // registration failed
+                // Tenemos el Service Worker en el fichero “service-worker.js” y el ambito “/”
+                // El registro nos devuelve una promesa que gestionaremos con el método .then()
+                navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
+                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                }).catch(function(err) {
+                    // registration failed :(
                     console.log('ServiceWorker registration failed: ', err);
-                })
+                });
             }
-          iniciarJuego(document.getElementById('lienzo'), document.getElementById('count'));
+            iniciarJuego(document.getElementById('lienzo'), document.getElementById('count'));
         </script>
     </body>
 </html>
