@@ -10,6 +10,14 @@
         <p id="movimientos">Movimientos: <span id="count">0</span></p>
         <canvas id="lienzo" width="600" height="300"></canvas>
         <script>
+            if ('serviceWorker' in navigator) { // Preguntamos si el navegador soporta el SW
+                navigator.serviceWorker.register('./service-worker.js').then(function (registration) {
+                    console.log('ServiceWorker registration succesful with scope: ', registration.scope);
+                }).catch(function (err) {
+                    // registration failed
+                    console.log('ServiceWorker registration failed: ', err);
+                })
+            }
           iniciarJuego(document.getElementById('lienzo'), document.getElementById('count'));
         </script>
     </body>
